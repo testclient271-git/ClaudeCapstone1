@@ -1,0 +1,22 @@
+S104 Possible binding to all interfaces
+  --> tests/test_security_round3.py:54:52
+   |
+52 | @pytest.mark.req("NFR-016", "NFR-009", "N-01")
+53 | @pytest.mark.parametrize("addr", [
+54 |     "", None, 0, 127, b"127.0.0.1", ["127.0.0.1"], "0.0.0.0", "::", "192.168.1.5",
+   |                                                    ^^^^^^^^^
+55 |     "example.com", "127.0.0.2", "localhost.example.com", "[::]",
+56 | ])
+   |
+
+S104 Possible binding to all interfaces
+  --> tests/test_security_round3.py:74:35
+   |
+73 | @pytest.mark.req("NFR-016", "NFR-009", "N-01")
+74 | @pytest.mark.parametrize("addr", ["0.0.0.0", "", None, "192.168.1.5", "example.com", "::"])
+   |                                   ^^^^^^^^^
+75 | def test_guard_blocks_non_loopback_n01(db_path, monkeypatch, addr):
+76 |     monkeypatch.setenv("TICKETS_DB_PATH", str(db_path))
+   |
+
+Found 2 errors.
